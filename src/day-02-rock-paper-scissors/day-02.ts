@@ -1,4 +1,5 @@
 // https://adventofcode.com/2022/day/2
+import { strict as assert } from "node:assert";
 import { print, readTextFile } from "../utils";
 
 const inputFilename = "./inputs/day-02.txt";
@@ -100,6 +101,7 @@ const partOne = (input: string[]) => {
   });
 
   print(`[Part 1] Your total score is ${totalScore}`);
+  assert(totalScore === 15337);
 };
 
 const getNextMove = (opponentMove: Move, myMove: Outcome): Move => {
@@ -150,6 +152,7 @@ const partTwo = (input: string[]) => {
   });
 
   print(`[Part 2] Your total score is ${totalScore}`);
+  assert(totalScore === 11696);
 };
 
 export default function () {

@@ -1,4 +1,5 @@
 // https://adventofcode.com/2022/day/1
+import { strict as assert } from "node:assert";
 import { print, readTextFile } from "../utils";
 
 const inputFilename = "./inputs/day-01.txt";
@@ -40,6 +41,7 @@ const partOne = (input: string[]) => {
   print(
     `[Part 1] Elf with most calories is ${elfWithMostCalories} with ${maxCalories} calories`
   );
+  console.assert(maxCalories === 72478);
 };
 
 type ElfInventory = { elf: number; totalCalories: number };
@@ -73,6 +75,7 @@ const partTwo = (input: string[]) => {
   }, 0);
 
   print(`[Part 2] The top 3 elves are carrying ${topCalories} calories`);
+  console.assert(topCalories === 210367);
 };
 
 export default function (): void {

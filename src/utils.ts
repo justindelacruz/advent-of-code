@@ -12,5 +12,13 @@ export function readTextFile(file: string): string[] {
 }
 
 export function print(...inputs: any): void {
-  console.log(JSON.stringify(inputs.join(' '), null, 4));
+  const itemsToPrint = inputs.map((input: any) => {
+    if (typeof input === "string") {
+      return input;
+    }
+
+    return JSON.stringify(input, null, 4);
+  });
+
+  console.log(itemsToPrint.join(" "));
 }

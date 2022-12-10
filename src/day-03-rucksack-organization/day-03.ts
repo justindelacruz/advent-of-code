@@ -1,5 +1,6 @@
-import { print, readTextFile } from "../utils";
+// https://adventofcode.com/2022/day/3
 import { strict as assert } from "node:assert";
+import { print, readTextFile } from "../utils";
 
 const inputFilename = "./inputs/day-03.txt";
 
