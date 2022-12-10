@@ -4,7 +4,7 @@
   "license": "UNLICENSED",
   "main": "index.js",
   "scripts": {
-    "watch": "tsc -w & nodemon -q -w dist dist"
+    "watch": "tsc -w & nodemon -C -q -w dist dist"
   },
   "dependencies": {
     "typescript": "^4.9.4"
