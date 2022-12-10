@@ -11,6 +11,6 @@ export function readTextFile(file: string): string[] {
   return [];
 }
 
-export function print(input: any): void {
-  console.log(JSON.stringify(input, null, 4));
+export function print(...inputs: any): void {
+  console.log(JSON.stringify(inputs.join(' '), null, 4));
 }

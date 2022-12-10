@@ -1,7 +1,7 @@
 // https://adventofcode.com/2022/day/1
 import { print, readTextFile } from "../utils";
 
-const inputFilename = "./inputs/day-1.txt";
+const inputFilename = "./inputs/day-01.txt";
 
 type Packs = number[][];
 
@@ -21,7 +21,7 @@ const makePacks = (input: string[]): Packs => {
   return packs;
 };
 
-const partOne = () => {
+const partOne = (input: string[]) => {
   const packs = makePacks(input);
 
   let maxCalories = 0;
@@ -45,7 +45,7 @@ const partOne = () => {
 type ElfInventory = { elf: number; totalCalories: number };
 type ElfInventories = { elf: number; totalCalories: number }[];
 
-const partTwo = () => {
+const partTwo = (input: string[]) => {
   const packs = makePacks(input);
 
   const elfInventory: ElfInventories = [];
@@ -75,10 +75,9 @@ const partTwo = () => {
   print(`[Part 2] The top 3 elves are carrying ${topCalories} calories`);
 };
 
-const main = (input: string[]): void => {
-  partOne();
-  partTwo();
-};
+export default function (): void {
+  const input = readTextFile(inputFilename);
 
-const input = readTextFile(inputFilename);
-main(input);
+  partOne(input);
+  partTwo(input);
+}
