@@ -1,4 +1,5 @@
 import { print, readTextFile } from "../utils";
+import { strict as assert } from "node:assert";
 
 const inputFilename = "./inputs/day-03.txt";
 
@@ -7,7 +8,7 @@ const getPriority = (item: string) => {
 
   // A-Z => ASCII 65-90
   // a-z => ASCII 97-122
-  return priority < 97 ? priority - 64 + 26: priority - 96;
+  return priority < 97 ? priority - 64 + 26 : priority - 96;
 };
 
 const getDuplicatedItem = (
@@ -20,7 +21,7 @@ const getDuplicatedItem = (
   let duplicatedItem = "";
   aSet.forEach((item) => {
     if (bSet.has(item)) {
-      duplicatedItem = item;
+      duplicatedItem += item;
     }
   });
 
@@ -38,16 +39,35 @@ const partOne = (input: string[]) => {
     const duplicatedItem = getDuplicatedItem(aCompartment, bCompartment);
     const priority = getPriority(duplicatedItem);
 
-    print(duplicatedItem, priority);
-
     totalPriority += priority;
   });
 
-  print(`The sum of the priorities is ${totalPriority}`);
+  print(`[Part 1] The sum of the priorities is ${totalPriority}`);
+  assert(totalPriority === 7878);
+};
+
+const partTwo = (input: string[]) => {
+  let totalPriority = 0;
+
+  for (let i = 0; i < input.length; i += 3) {
+    const aRucksack = input[i];
+    const bRucksack = input[i + 1];
+    const cRucksack = input[i + 2];
+
+    const duplicatedItems = getDuplicatedItem(aRucksack, bRucksack);
+    const badge = getDuplicatedItem(duplicatedItems, cRucksack);
+    const priority = getPriority(badge);
+
+    totalPriority += priority;
+  }
+
+  print(`[Part 2] The sum of the priorities is ${totalPriority}`);
+  assert(totalPriority === 2760);
 };
 
 export default function () {
   const input = readTextFile(inputFilename);
 
   partOne(input);
+  partTwo(input);
 }
