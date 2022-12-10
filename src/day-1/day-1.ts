@@ -21,11 +21,11 @@ const makePacks = (input: string[]): Packs => {
   return packs;
 };
 
-const main = (input: string[]): void => {
+const partOne = () => {
   const packs = makePacks(input);
 
   let maxCalories = 0;
-  let elfWithMostCalories = null;
+  let elfWithMostCalories: number = -1;
   packs.forEach((pack, elfIndex) => {
     const totalCalories = pack.reduce((acc, currentValue) => {
       return acc + currentValue;
@@ -38,8 +38,46 @@ const main = (input: string[]): void => {
   });
 
   print(
-    `Elf with most calories is ${elfWithMostCalories} with ${maxCalories} calories`
+    `[Part 1] Elf with most calories is ${elfWithMostCalories} with ${maxCalories} calories`
   );
+};
+
+type ElfInventory = { elf: number; totalCalories: number };
+type ElfInventories = { elf: number; totalCalories: number }[];
+
+const partTwo = () => {
+  const packs = makePacks(input);
+
+  const elfInventory: ElfInventories = [];
+  packs.forEach((pack, elfIndex) => {
+    const totalCalories = pack.reduce((acc, currentValue) => {
+      return acc + currentValue;
+    }, 0);
+    elfInventory.push({ elf: elfIndex, totalCalories: totalCalories });
+  });
+
+  const compareElves = (a: ElfInventory, b: ElfInventory) => {
+    if (a.totalCalories > b.totalCalories) {
+      return 1;
+    }
+    if (a.totalCalories < b.totalCalories) {
+      return -1;
+    }
+    return 0;
+  };
+  elfInventory.sort(compareElves);
+
+  const topThreeElvesInventory = elfInventory.slice(-3);
+  const topCalories = topThreeElvesInventory.reduce((acc, currentValue) => {
+    return acc + currentValue.totalCalories;
+  }, 0);
+
+  print(`[Part 2] The top 3 elves are carrying ${topCalories} calories`);
+};
+
+const main = (input: string[]): void => {
+  partOne();
+  partTwo();
 };
 
 const input = readTextFile(inputFilename);
