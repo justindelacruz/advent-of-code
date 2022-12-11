@@ -49,6 +49,11 @@ async function main() {
       run();
       break;
     }
+    case "day-10": {
+      const { default: run } = await import("./day-10-cathode-ray-tube/day-10");
+      run();
+      break;
+    }
     default: {
       console.error(`Error: Couldn't find anything for ${day}`);
     }
