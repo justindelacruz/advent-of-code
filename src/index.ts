@@ -54,6 +54,11 @@ async function main() {
       run();
       break;
     }
+    case "day-11": {
+      const { default: run } = await import("./day-11-something/day-11");
+      run();
+      break;
+    }
     default: {
       console.error(`Error: Couldn't find anything for ${day}`);
     }
