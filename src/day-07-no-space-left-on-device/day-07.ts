@@ -28,10 +28,6 @@ const makeDirectoryTree = (input: string[]): TreeNode => {
     totalSize: 0,
   };
 
-  const tree: Record<string, TreeNode> = {
-    "/": root,
-  };
-
   let pointer = root;
 
   input.forEach((line) => {
@@ -110,15 +106,6 @@ const calculateSizeOfSmallDirectories = (node: TreeNode, maxSize: number) => {
   return totalSize;
 };
 
-const partOne = (input: string[]) => {
-  const root = makeDirectoryTree(input);
-  updateTotalDirectorySizes(root);
-  const sizeOfSmallDirectories = calculateSizeOfSmallDirectories(root, 100000);
-
-  print(`[Part 1] Sum of total sizes of those directories: ${sizeOfSmallDirectories}`);
-  assert(sizeOfSmallDirectories === 1845346);
-};
-
 const findDirectoryToDelete = (
   node: TreeNode,
   unusedSpace: number,
@@ -135,6 +122,15 @@ const findDirectoryToDelete = (
   });
 
   return sizeOfSmallestDirectoryToDelete;
+};
+
+const partOne = (input: string[]) => {
+  const root = makeDirectoryTree(input);
+  updateTotalDirectorySizes(root);
+  const sizeOfSmallDirectories = calculateSizeOfSmallDirectories(root, 100000);
+
+  print(`[Part 1] Sum of total sizes of those directories: ${sizeOfSmallDirectories}`);
+  assert(sizeOfSmallDirectories === 1845346);
 };
 
 const partTwo = (input: string[]) => {
