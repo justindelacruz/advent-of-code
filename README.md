@@ -7,5 +7,6 @@ https://adventofcode.com/2022
 
 ```bash
 yarn
-yarn watch day-01 # Pass in the desired Advent of Code script as an argument
+# Pass in the desired Advent of Code script as an argument
+yarn watch day-01
 ```
