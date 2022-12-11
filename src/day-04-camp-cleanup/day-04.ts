@@ -4,10 +4,7 @@ import { print, readTextFile } from "../utils";
 
 const inputFilename = "./inputs/day-04.txt";
 
-const doSectionsOverlapCompletely = (
-  aAssignment: string,
-  bAssignment: string
-) => {
+const doSectionsOverlapCompletely = (aAssignment: string, bAssignment: string) => {
   const [aLowerSectionStr, aUpperSectionStr] = aAssignment.split("-");
   const [bLowerSectionStr, bUpperSectionStr] = bAssignment.split("-");
 
@@ -27,10 +24,7 @@ const doSectionsOverlapCompletely = (
   );
 };
 
-const doSectionsOverlapPartially = (
-  aAssignment: string,
-  bAssignment: string
-) => {
+const doSectionsOverlapPartially = (aAssignment: string, bAssignment: string) => {
   const [aLowerSectionStr, aUpperSectionStr] = aAssignment.split("-");
   const [bLowerSectionStr, bUpperSectionStr] = bAssignment.split("-");
 

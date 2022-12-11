@@ -12,10 +12,7 @@ const getPriority = (item: string) => {
   return priority < 97 ? priority - 64 + 26 : priority - 96;
 };
 
-const getDuplicatedItem = (
-  aCompartment: string,
-  bCompartment: string
-): string => {
+const getDuplicatedItem = (aCompartment: string, bCompartment: string): string => {
   const aSet = new Set(aCompartment);
   const bSet = new Set(bCompartment);
 

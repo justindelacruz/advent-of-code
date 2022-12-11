@@ -38,9 +38,7 @@ const partOne = (input: string[]) => {
     }
   });
 
-  print(
-    `[Part 1] Elf with most calories is ${elfWithMostCalories} with ${maxCalories} calories`
-  );
+  print(`[Part 1] Elf with most calories is ${elfWithMostCalories} with ${maxCalories} calories`);
   console.assert(maxCalories === 72478);
 };
 

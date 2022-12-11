@@ -1,4 +1,4 @@
-// https://adventofcode.com/2022/day/5
+// https://adventofcode.com/2022/day/6
 import { strict as assert } from "node:assert";
 import { print, readTextFile } from "../utils";
 
@@ -34,8 +34,7 @@ const partOne = (input: string[]) => {
   const index = findMarker(datastream, 4);
 
   print(
-    `[Part 1] Number of characters that need to be processed 
-    before the start-of-packet marker is detected: ${index}`
+    `[Part 1] Number of characters that need to be processed before the start-of-packet marker is detected: ${index}`
   );
   assert(index === 1275);
 };
@@ -45,8 +44,7 @@ const partTwo = (input: string[]) => {
   const index = findMarker(datastream, 14);
 
   print(
-    `[Part 2] Number of characters that need to be processed 
-    before the start-of-message marker is detected: ${index}`
+    `[Part 2] Number of characters that need to be processed before the start-of-message marker is detected: ${index}`
   );
   assert(index === 3605);
 };
