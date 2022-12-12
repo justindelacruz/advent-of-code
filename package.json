@@ -7,8 +7,6 @@
     "watch": "tsc -w & nodemon -C -q -w dist dist"
   },
   "dependencies": {
-    "@types/big.js": "^6.1.6",
-    "big.js": "^6.2.1",
     "typescript": "^4.9.4"
   },
   "devDependencies": {
