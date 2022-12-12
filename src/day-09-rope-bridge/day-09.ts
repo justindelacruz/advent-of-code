@@ -154,6 +154,4 @@ export default function () {
 
   partOne(input);
   partTwo(input);
-
-  print("Done.");
 }

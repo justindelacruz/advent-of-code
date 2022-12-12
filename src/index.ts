@@ -63,6 +63,8 @@ async function main() {
       console.error(`Error: Couldn't find anything for ${day}`);
     }
   }
+
+  console.log("Done.");
 }
 
 main();

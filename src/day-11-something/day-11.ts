@@ -219,7 +219,7 @@ const partOne = (inputs: string[]) => {
   print(
     `[Part 1] After ${numRounds} rounds of play, the level of monkey business is ${monkeyBusiness}.`
   );
-  assert(monkeyBusiness === 88208); // real file
+  assert(monkeyBusiness === 88208);
 };
 
 const partTwo = (inputs: string[]) => {
@@ -233,6 +233,7 @@ const partTwo = (inputs: string[]) => {
   print(
     `[Part 2] After ${numRounds} rounds of play, the level of monkey business is ${monkeyBusiness}.`
   );
+  assert(monkeyBusiness === 21115867968);
 };
 
 export default function () {
@@ -240,6 +241,4 @@ export default function () {
 
   partOne(inputs);
   partTwo(inputs);
-
-  print("Done.");
 }

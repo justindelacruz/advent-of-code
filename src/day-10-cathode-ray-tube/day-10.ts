@@ -86,6 +86,4 @@ export default function () {
 
   partOne(inputs);
   partTwo(inputs);
-
-  print("Done.");
 }
