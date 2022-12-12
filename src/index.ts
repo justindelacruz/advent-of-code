@@ -55,7 +55,12 @@ async function main() {
       break;
     }
     case "day-11": {
-      const { default: run } = await import("./day-11-something/day-11");
+      const { default: run } = await import("./day-11-monkey-in-the-middle/day-11");
+      run();
+      break;
+    }
+    case "day-12": {
+      const { default: run } = await import("./day-12-something/day-12");
       run();
       break;
     }
