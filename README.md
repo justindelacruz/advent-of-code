@@ -6,7 +6,7 @@ https://adventofcode.com/
 ## How to run
 
 ```bash
-cd 2022
+cd 2023
 yarn
 # Pass in the desired Advent of Code script as an argument
 yarn watch day-01
