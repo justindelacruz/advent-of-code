@@ -1,4 +1,5 @@
 // https://adventofcode.com/2023/day/1
+import { strict as assert } from "node:assert";
 import { print, readTextFile } from "../utils";
 
 const inputFilename = "./inputs/day-01.txt";
@@ -18,6 +19,7 @@ const partOne = (input: string[]) => {
 
   print("What is the sum of all of the calibration values?");
   print(sum);
+  assert(sum === 55488);
 };
 
 const numberTokens: Record<string, string> = {
@@ -84,6 +86,7 @@ const partTwo = (input: string[]) => {
 
   print("What is the sum of all of the calibration values?");
   print(sum);
+  assert(sum === 55614);
 };
 
 export default function (): void {
