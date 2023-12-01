@@ -1,5 +1,5 @@
 {
-  "description": "Advent of Code 2022",
+  "description": "Advent of Code 2023",
   "author": "justindelacruz",
   "license": "UNLICENSED",
   "main": "index.js",
@@ -10,11 +10,11 @@
     "typescript": "^4.9.4"
   },
   "devDependencies": {
-    "@tsconfig/node16": "^1.0.3",
-    "@types/node": "^18.11.12",
-    "node-watch": "^0.7.3",
-    "nodemon": "^2.0.20",
-    "prettier": "2.8.1"
+    "@tsconfig/node18": "^1.0.3",
+    "@types/node": "^18",
+    "node-watch": "^0.7.4",
+    "nodemon": "^3.0.1",
+    "prettier": "^3.1.0"
   },
   "engines": {
     "node": "^18"
