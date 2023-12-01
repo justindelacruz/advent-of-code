@@ -13,11 +13,10 @@ const partOne = (input: string[]) => {
     const lastDigit = lineArr.find((c) => /\d/.test(c)) ?? "0";
 
     const calibrationValue = firstDigit + lastDigit;
-
     sum += parseInt(calibrationValue, 10);
   });
 
-  print(`What is the sum of all of the calibration values?`);
+  print("What is the sum of all of the calibration values?");
   print(sum);
 };
 
@@ -56,13 +55,13 @@ const getDigit = (line: string): Record<string, string> => {
     const firstResult = results[0];
     const lastResult = results[results.length - 1];
 
-    if (results.length > 0) {
+    if (results.length) {
       if (firstResult.index !== undefined && firstResult.index < lowestPosition) {
         lowestPosition = firstResult.index;
         lowestDigitToken = token;
       }
       if (lastResult.index !== undefined && lastResult.index > highestPosition) {
-        highestPosition = lastResult.index ?? -1;
+        highestPosition = lastResult.index;
         highestDigitToken = token;
       }
     }
@@ -80,11 +79,9 @@ const partTwo = (input: string[]) => {
   input.forEach((line) => {
     const { firstDigit, lastDigit } = getDigit(line);
     const calibrationValue = firstDigit + lastDigit;
-
     sum += parseInt(calibrationValue, 10);
   });
 
-  print("");
   print("What is the sum of all of the calibration values?");
   print(sum);
 };
@@ -92,6 +89,10 @@ const partTwo = (input: string[]) => {
 export default function (): void {
   const input = readTextFile(inputFilename);
 
-  // partOne(input);
+  print("Part 1:");
+  partOne(input);
+
+  print("");
+  print("Part 2:");
   partTwo(input);
 }
