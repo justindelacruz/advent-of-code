@@ -9,6 +9,11 @@ async function main() {
       run();
       break;
     }
+    case "day-02": {
+      const { default: run } = await import("./day-02-cube-conundrum");
+      run();
+      break;
+    }
     default: {
       console.error(`Error: Couldn't find anything for ${day}`);
     }

@@ -81,6 +81,7 @@ const partTwo = (input: string[]) => {
   input.forEach((line) => {
     const { firstDigit, lastDigit } = getDigit(line);
     const calibrationValue = firstDigit + lastDigit;
+    print(calibrationValue);
     sum += parseInt(calibrationValue, 10);
   });
 
