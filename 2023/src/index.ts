@@ -14,6 +14,11 @@ async function main() {
       run();
       break;
     }
+    case "day-03": {
+      const { default: run } = await import("./day-03-gear-ratios");
+      run();
+      break;
+    }
     default: {
       console.error(`Error: Couldn't find anything for ${day}`);
     }
