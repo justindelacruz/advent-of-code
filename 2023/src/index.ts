@@ -4,6 +4,7 @@ const days: Record<string, string> = {
   "day-03": "./day-03-gear-ratios",
   "day-04": "./day-04-scratchcards",
   "day-05": "./day-05-if-you-give-a-seed-a-fertilizer",
+  "day-06": "./day-06-wait-for-it",
 };
 
 async function main() {
