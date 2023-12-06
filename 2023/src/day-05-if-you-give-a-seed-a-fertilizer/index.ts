@@ -1,11 +1,12 @@
 // https://adventofcode.com/2023/day/5
 import { strict as assert } from "node:assert";
 import { print, readTextFile } from "../utils";
+import { Worker } from "worker_threads";
 
 const inputFilename = "./inputs/day-05.txt";
 const sampleFilename = "./inputs/day-05-sample.txt";
 
-type MapType =
+export type MapType =
   | "seed-to-soil"
   | "soil-to-fertilizer"
   | "fertilizer-to-water"
@@ -14,7 +15,7 @@ type MapType =
   | "temperature-to-humidity"
   | "humidity-to-location";
 
-type MapEntry = {
+export type MapEntry = {
   destinationStart: number;
   sourceStart: number;
   rangeLength: number;
@@ -80,7 +81,7 @@ const getSeeds = (seedsStr?: string): number[] => {
   return seeds;
 };
 
-type SeedRange = {
+export type SeedRange = {
   start: number;
   length: number;
 };
@@ -98,7 +99,7 @@ const getSeedRanges = (seedsStr?: string): SeedRange[] => {
   return seedRanges;
 };
 
-const findLocation = (maps: Record<MapType, MapEntry[]>, seed: number): number => {
+export const findLocation = (maps: Record<MapType, MapEntry[]>, seed: number): number => {
   let currentValue = seed;
 
   Object.entries(maps).forEach(([, mapEntries]) => {
@@ -168,6 +169,65 @@ const partTwo = (inputs: string[], solution?: number) => {
   }
 };
 
+const doWork = (seedRanges: SeedRange[], maps: Record<MapType, MapEntry[]>) => {
+  let lowestLocation = Infinity;
+
+  seedRanges.forEach(({ start, length }) => {
+    print(start, length);
+    for (let seed = start; seed < start + length; seed++) {
+      const location = findLocation(maps, seed);
+      lowestLocation = Math.min(lowestLocation, location);
+    }
+  });
+
+  return lowestLocation;
+};
+
+const THREAD_COUNT = 4;
+const createWorker = (seedRanges: SeedRange[], maps: Record<MapType, MapEntry[]>) => {
+  return new Promise(function (resolve, reject) {
+    const worker = new Worker("./src/day-05-if-you-give-a-seed-a-fertilizer/worker.ts", {
+      workerData: { thread_count: THREAD_COUNT, seedRanges, maps },
+    });
+    worker.on("message", (data) => {
+      resolve(data);
+    });
+    worker.on("error", (msg) => {
+      reject(`An error occurred: ${msg}`);
+    });
+  });
+};
+
+const partTwoThreaded = async (inputs: string[], solution?: number) => {
+  print("Part 2:");
+  print("");
+
+  const almanac = [...inputs];
+  const seedsStr = almanac.shift();
+  const seedRanges = getSeedRanges(seedsStr);
+  const maps = generateMaps(almanac);
+
+  print(seedRanges);
+
+  const workerPromises = [];
+  print("Starting workers");
+  workerPromises.push(createWorker(seedRanges.slice(0, 2), maps));
+  workerPromises.push(createWorker(seedRanges.slice(2, 4), maps));
+  workerPromises.push(createWorker(seedRanges.slice(4, 6), maps));
+  workerPromises.push(createWorker(seedRanges.slice(6, 8), maps));
+  workerPromises.push(createWorker(seedRanges.slice(8, 10), maps));
+  const threadResults = (await Promise.all(workerPromises)) as number[];
+  print(threadResults);
+
+  const lowestLocation = Math.min(...threadResults);
+  print("What is the lowest location number that corresponds to any of the initial seed numbers?");
+  print(lowestLocation);
+
+  if (solution) {
+    assert(lowestLocation === solution);
+  }
+};
+
 export default function (): void {
   const sample = readTextFile(sampleFilename);
   const input = readTextFile(inputFilename);
@@ -175,5 +235,7 @@ export default function (): void {
   partOne(sample, 35);
   partOne(input, 424490994);
   print("");
-  partTwo(input, 15290096);
+  // partTwo(input, 15290096);
+  // partTwoThreaded(sample, 46);
+  partTwoThreaded(input, 15290096);
 }
