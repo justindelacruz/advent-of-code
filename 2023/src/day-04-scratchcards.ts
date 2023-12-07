@@ -1,6 +1,6 @@
 // https://adventofcode.com/2023/day/4
 import { strict as assert } from "node:assert";
-import { print, readTextFile } from "../utils";
+import { print, readTextFile } from "./utils";
 
 const inputFilename = "./inputs/day-04.txt";
 // const inputFilename = "./inputs/day-04-sample.txt";
