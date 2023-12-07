@@ -20,26 +20,11 @@ type Entry = {
   bid: number;
 };
 
-const parseInputStepOne = (input: string): { cards: Cards; bid: number } => {
+const parseInput = (input: string, useJokers = false): { cards: Cards; bid: number } => {
   const [handStr, bidStr] = input.split(" ");
   const cards = handStr.split("").map((card) => {
     if (card === "T") return 10;
-    if (card === "J") return 11;
-    if (card === "Q") return 12;
-    if (card === "K") return 13;
-    if (card === "A") return 14;
-    return parseInt(card, 10);
-  });
-  const bid = parseInt(bidStr, 10);
-
-  return { cards, bid };
-};
-
-const parseInputStepTwo = (input: string): { cards: Cards; bid: number } => {
-  const [handStr, bidStr] = input.split(" ");
-  const cards = handStr.split("").map((card) => {
-    if (card === "T") return 10;
-    if (card === "J") return 1; // J is 1 instead of 11 now
+    if (card === "J") return useJokers ? 1 : 11;
     if (card === "Q") return 12;
     if (card === "K") return 13;
     if (card === "A") return 14;
@@ -66,6 +51,13 @@ const getTypeStepOne = (groups: number[]): Type => {
   return "high-card";
 };
 
+/**
+ * When dealing with wild cards, we can simply add the number
+ * of jokers to the otherwise-strongest hand.
+ * e.g. 888J8
+ *    Original strength = 4-of-a-kind
+ *    Effective stength = 5-of-a-kind
+ */
 const getTypeStepTwo = (groups: number[]): Type => {
   const numJokers = groups[1] ?? 0;
   if (numJokers === 5) {
@@ -75,6 +67,7 @@ const getTypeStepTwo = (groups: number[]): Type => {
   const groupsExcludingJokers = [...groups.slice(0, 1), ...groups.slice(2)];
   const numMatches = Math.max(...groupsExcludingJokers.filter(Boolean));
   const strength = numMatches + numJokers;
+
   switch (strength) {
     case 5:
       return "five-of-a-kind";
@@ -111,7 +104,7 @@ const getTotalWinnings = (types: Record<Type, Entry[]>) => {
     hands.sort(sortMatchedStrengthCards);
     rankedHands.push(...hands);
   });
-  rankedHands.reverse(); // highest ranked at the end
+  rankedHands.reverse(); // highest-ranked hands at the end
 
   let totalWinnings = 0;
   rankedHands.forEach((rankedHand, i) => {
@@ -134,7 +127,7 @@ const partOne = (inputs: string[], solution?: number) => {
   };
 
   inputs.forEach((input) => {
-    const { cards, bid } = parseInputStepOne(input);
+    const { cards, bid } = parseInput(input);
 
     const groups: number[] = [];
     cards.forEach((card) => {
@@ -169,7 +162,7 @@ const partTwo = (inputs: string[], solution?: number) => {
   };
 
   inputs.forEach((input) => {
-    const { cards, bid } = parseInputStepTwo(input);
+    const { cards, bid } = parseInput(input, true);
 
     const groups: number[] = [];
     cards.forEach((card) => {
