@@ -1,13 +1,21 @@
 # Advent of Code
 https://adventofcode.com/
 
-2022 and 2023 - Solved in TypeScript
+My attempts at solving Advent of Code challenges.
 
-## How to run
+* 2021
+  * JavaScript
+  * 6 stars earned (out of 50)
+  * 3 challenges attempted
+* 2022
+  * TypeScript
+  * 22 stars earned (out of 50)
+  * 12 challenges attempted
+* [2023]
+  * TypeScript
+  * 22 stars earned (out of 50)
+  * 12 challenges attempted
 
-```bash
-cd 2023
-yarn
-# Pass in the desired Advent of Code script as an argument
-yarn watch day-01
-```
+
+
+[2023]: 2023/README.md
