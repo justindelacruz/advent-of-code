@@ -4,6 +4,7 @@ import { print, readTextFile } from "./utils";
 
 const inputFilename = "./inputs/day-08.txt";
 const sampleOneFilename = "./inputs/day-08-sample-01.txt";
+const sampleTwoFilename = "./inputs/day-08-sample-02.txt";
 
 type Node = {
   left: string;
@@ -98,6 +99,7 @@ const partTwo = (inputs: string[], solution?: number) => {
 
 export default function (): void {
   const sampleOne = readTextFile(sampleOneFilename);
+  const sampleTwo = readTextFile(sampleTwoFilename);
   const input = readTextFile(inputFilename);
 
   print("Part 1 (Sample) ===================");
@@ -105,7 +107,11 @@ export default function (): void {
   print("");
 
   print("Part 1 ============================");
-  partOne(input);
+  partOne(input, 15989);
+  print("");
+
+  print("Part 2 (Sample) ===================");
+  partTwo(sampleTwo, 6);
   print("");
 
   print("Part 2 ===================");
