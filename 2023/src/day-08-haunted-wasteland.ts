@@ -52,6 +52,15 @@ const partOne = (inputs: string[], solution?: number) => {
   }
 };
 
+const getGreatestCommonDenominator = (a: number, b: number): number =>
+  a % b === 0 ? b : getGreatestCommonDenominator(b, a % b);
+
+const getLowestCommonMultiple = (a: number, b: number): number =>
+  (a * b) / getGreatestCommonDenominator(a, b);
+
+const getArrayLowestCommonMultiple = (numbers: number[]) =>
+  numbers.reduce((a, b) => getLowestCommonMultiple(a, b));
+
 const partTwo = (inputs: string[], solution?: number) => {
   const nodes = [...inputs];
   const directions = (nodes.shift() ?? "").split("");
@@ -68,12 +77,7 @@ const partTwo = (inputs: string[], solution?: number) => {
     stepsToZ.push(stepsZ);
   });
 
-  // Use Wolfram Alpha to get Lowest Common Multiple of `stepsToZ`
-  const steps = 13830919117339;
-  // Verify that `steps` is actually the LCM
-  const isLcm = stepsToZ.every((n) => steps % n === 0);
-  assert(isLcm);
-
+  const steps = getArrayLowestCommonMultiple(stepsToZ);
   print("How many steps does it take before you're only on nodes that end with Z?");
   print(steps);
 
