@@ -4,7 +4,7 @@ import { print, readTextFile } from "../utils";
 import { Worker } from "worker_threads";
 
 const inputFilename = "./inputs/day-05.txt";
-const sampleFilename = "./inputs/day-05-sample.txt";
+const exampleFilename = "./inputs/day-05-example.txt";
 
 export type MapType =
   | "seed-to-soil"
@@ -169,20 +169,6 @@ const partTwo = (inputs: string[], solution?: number) => {
   }
 };
 
-const doWork = (seedRanges: SeedRange[], maps: Record<MapType, MapEntry[]>) => {
-  let lowestLocation = Infinity;
-
-  seedRanges.forEach(({ start, length }) => {
-    print(start, length);
-    for (let seed = start; seed < start + length; seed++) {
-      const location = findLocation(maps, seed);
-      lowestLocation = Math.min(lowestLocation, location);
-    }
-  });
-
-  return lowestLocation;
-};
-
 const THREAD_COUNT = 4;
 const createWorker = (seedRanges: SeedRange[], maps: Record<MapType, MapEntry[]>) => {
   return new Promise(function (resolve, reject) {
@@ -229,13 +215,13 @@ const partTwoThreaded = async (inputs: string[], solution?: number) => {
 };
 
 export default function (): void {
-  const sample = readTextFile(sampleFilename);
+  const example = readTextFile(exampleFilename);
   const input = readTextFile(inputFilename);
 
-  partOne(sample, 35);
+  partOne(example, 35);
   partOne(input, 424490994);
   print("");
   // partTwo(input, 15290096);
-  // partTwoThreaded(sample, 46);
+  // partTwoThreaded(example, 46);
   partTwoThreaded(input, 15290096);
 }

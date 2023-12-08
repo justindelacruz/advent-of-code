@@ -3,7 +3,7 @@ import { strict as assert } from "node:assert";
 import { print, readTextFile } from "./utils";
 
 const inputFilename = "./inputs/day-04.txt";
-// const inputFilename = "./inputs/day-04-sample.txt";
+// const inputFilename = "./inputs/day-04-example.txt";
 
 const partOne = (inputs: string[]) => {
   print("Part 1:");

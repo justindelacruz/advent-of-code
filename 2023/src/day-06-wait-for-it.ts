@@ -3,7 +3,7 @@ import { strict as assert } from "node:assert";
 import { print, readTextFile } from "./utils";
 
 const inputFilename = "./inputs/day-06.txt";
-const sampleFilename = "./inputs/day-06-sample.txt";
+const exampleFilename = "./inputs/day-06-example.txt";
 
 type Race = {
   time: number;
@@ -88,14 +88,14 @@ const partTwo = (inputs: string[], solution?: number) => {
 };
 
 export default function (): void {
-  const sample = readTextFile(sampleFilename);
+  const example = readTextFile(exampleFilename);
   const input = readTextFile(inputFilename);
 
-  partOne(sample, 288);
+  partOne(example, 288);
   print("");
   partOne(input, 2269432);
   print("");
-  partTwo(sample, 71503);
+  partTwo(example, 71503);
   print("");
   partTwo(input);
 }

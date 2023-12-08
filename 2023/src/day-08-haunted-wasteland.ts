@@ -3,8 +3,8 @@ import { strict as assert } from "node:assert";
 import { print, readTextFile } from "./utils";
 
 const inputFilename = "./inputs/day-08.txt";
-const sampleOneFilename = "./inputs/day-08-sample-01.txt";
-const sampleTwoFilename = "./inputs/day-08-sample-02.txt";
+const exampleOneFilename = "./inputs/day-08-example-01.txt";
+const exampleTwoFilename = "./inputs/day-08-example-02.txt";
 
 type Node = {
   left: string;
@@ -98,20 +98,20 @@ const partTwo = (inputs: string[], solution?: number) => {
 };
 
 export default function (): void {
-  const sampleOne = readTextFile(sampleOneFilename);
-  const sampleTwo = readTextFile(sampleTwoFilename);
+  const exampleOne = readTextFile(exampleOneFilename);
+  const exampleTwo = readTextFile(exampleTwoFilename);
   const input = readTextFile(inputFilename);
 
-  print("Part 1 (Sample) ===================");
-  partOne(sampleOne, 6);
+  print("Part 1 (Example) ===================");
+  partOne(exampleOne, 6);
   print("");
 
   print("Part 1 ============================");
   partOne(input, 15989);
   print("");
 
-  print("Part 2 (Sample) ===================");
-  partTwo(sampleTwo, 6);
+  print("Part 2 (Example) ===================");
+  partTwo(exampleTwo, 6);
   print("");
 
   print("Part 2 ===================");

@@ -3,7 +3,7 @@ import { strict as assert } from "node:assert";
 import { print, readTextFile } from "./utils";
 
 const inputFilename = "./inputs/day-07.txt";
-const sampleFilename = "./inputs/day-07-sample.txt";
+const exampleFilename = "./inputs/day-07-example.txt";
 
 type Type =
   | "five-of-a-kind"
@@ -186,19 +186,19 @@ const partTwo = (inputs: string[], solution?: number) => {
 };
 
 export default function (): void {
-  const sample = readTextFile(sampleFilename);
+  const example = readTextFile(exampleFilename);
   const input = readTextFile(inputFilename);
 
-  print("Part 1 (Sample) ===================");
-  partOne(sample, 6440);
+  print("Part 1 (Example) ===================");
+  partOne(example, 6440);
   print("");
 
   print("Part 1 ============================");
   partOne(input, 252052080);
   print("");
 
-  print("Part 2 (Sample) ===================");
-  partTwo(sample, 5905);
+  print("Part 2 (Example) ===================");
+  partTwo(example, 5905);
   print("");
 
   print("Part 2 ===================");
