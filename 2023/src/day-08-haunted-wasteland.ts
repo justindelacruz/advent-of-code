@@ -71,13 +71,23 @@ const partTwo = (inputs: string[], solution?: number) => {
   // Get all nodes ending with 'A'
   const currentNodes = Object.keys(map).filter((key) => key[2] === "A");
   const stepsToZ: number[] = [];
-
   currentNodes.forEach((currentNode) => {
+    // It turns out that EVERY starting node will *loop* to its
+    // destination "Z" node regularly and periodically.
+    // (This was not clear or obvious from the problem description.)
+    //
+    // Therefore, we can:
+    // - Calculate how many steps it takes for each starting node
+    //   to reach its destination.
+    // - Calculate the *lowest common denominator* of all these steps
+    //
+    // The LCM should be the number of steps such that all nodes will
+    // simultaneously be on a "Z" node.
     const stepsZ = navigate(map, directions, currentNode);
     stepsToZ.push(stepsZ);
   });
-
   const steps = getArrayLowestCommonMultiple(stepsToZ);
+
   print("How many steps does it take before you're only on nodes that end with Z?");
   print(steps);
 
