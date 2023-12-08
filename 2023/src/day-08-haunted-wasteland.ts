@@ -1,4 +1,4 @@
-// https://adventofcode.com/2023/day/7
+// https://adventofcode.com/2023/day/8
 import { strict as assert } from "node:assert";
 import { print, readTextFile } from "./utils";
 
