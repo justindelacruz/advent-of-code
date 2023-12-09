@@ -7,6 +7,7 @@ const days: Record<string, string> = {
   "day-06": "./day-06-wait-for-it",
   "day-07": "./day-07-camel-cards",
   "day-08": "./day-08-haunted-wasteland",
+  "day-09": "./day-09-mirage-maintenance",
 };
 
 async function main() {
