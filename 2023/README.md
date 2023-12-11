@@ -32,3 +32,10 @@ Note on Notes: I didn't start taking notes until Day 5.
   [ 1, 11, 2, 4, 6 ]
   ```
 - I should leave more inline comments to explain my thinking more.
+
+### Day 10
+
+I needed to remind myself of the even-odd test, which I totally forgot about:
+
+https://iq.opengenus.org/inside-outside-test/:
+> The algorithm follows a basic observation that if a ray coming from infinity crosses through border of polygon, then it goes from outside to inside and outside to inside alternately. For every two crossings, point lies outside of polygon.
