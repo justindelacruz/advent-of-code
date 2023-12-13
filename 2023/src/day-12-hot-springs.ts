@@ -15,7 +15,7 @@ const getIsValidArrangement = (damagedGroups: string[], groups: number[]): boole
   if (damagedGroups.length !== groups.length) return false;
 
   let isValidArrangement = true;
-  for (let i = 0; i < groups.length; i++) {
+  for (let i = 0; i < damagedGroups.length; i++) {
     if (damagedGroups[i].length !== groups[i]) {
       isValidArrangement = false;
       break;
@@ -36,11 +36,13 @@ const getUnknownIndexes = (springs: string): number[] => {
   return matchIndexes;
 };
 
-const permute = (length: number) => {
+const permute = (length: number, numKnownDamaged: number) => {
   const results: Set<string> = new Set();
   const intermediates: Set<string> = new Set();
 
-  const recursive = (result: string[]) => {
+  const recursive = (result: string[], numDamaged: number) => {
+    if (numDamaged > numKnownDamaged) return;
+
     if (intermediates.has(result.join(""))) return;
     intermediates.add(result.join(""));
 
@@ -51,18 +53,18 @@ const permute = (length: number) => {
 
     for (let i = 0; i < length; i++) {
       result.push("#");
-      recursive(result);
+      recursive(result, numDamaged + 1);
       result.pop();
     }
 
     for (let i = 0; i < length; i++) {
       result.push(".");
-      recursive(result);
+      recursive(result, numDamaged);
       result.pop();
     }
   };
 
-  recursive([]);
+  recursive([], 0);
 
   return results;
 };
@@ -97,6 +99,7 @@ const partOne = (inputs: string[], solution?: number) => {
     const springs = springsStr.split("");
     const groups = groupsStr.split(",").map((str) => parseInt(str, 10));
     const unknownIndexes = getUnknownIndexes(springsStr);
+    const numKnownDamaged = groups.reduce((sum, val) => sum + val);
 
     print("");
     print(i);
@@ -104,7 +107,7 @@ const partOne = (inputs: string[], solution?: number) => {
     print("groups", groups.join(" "));
     print("unknownIndexes", unknownIndexes.join(" "));
 
-    const permutations = permute(unknownIndexes.length);
+    const permutations = permute(unknownIndexes.length, numKnownDamaged);
 
     const numValidArrangements = getNumValidArrangements(
       springs,
@@ -133,9 +136,20 @@ const partTwo = (inputs: string[], solution?: number) => {
     const [springsStr, groupsStr] = input.split(" ");
     const springs = springsStr.split("");
     const groups = groupsStr.split(",").map((str) => parseInt(str, 10));
-    const springs5 = [...springs, ...springs, ...springs, ...springs, ...springs];
-    const groups5 = [...groups, ...groups, ...groups, ...groups, ...groups];
+    const springs5 = [
+      ...springs,
+      "?",
+      // ...springs,
+      // "?",
+      // ...springs,
+      // "?",
+      // ...springs,
+      // "?",
+      // ...springs,
+    ];
+    const groups5 = [...groups /* ...groups ...groups, ...groups, ...groups*/];
     const unknownIndexes = getUnknownIndexes(springs5.join(""));
+    const numKnownDamaged = groups5.reduce((sum, val) => sum + val);
 
     print("");
     print(i);
@@ -143,7 +157,9 @@ const partTwo = (inputs: string[], solution?: number) => {
     print("groups", groups5.join(" "));
     print("unknownIndexes", unknownIndexes.join(" "));
 
-    const permutations = permute(unknownIndexes.length);
+    const permutations = permute(unknownIndexes.length, numKnownDamaged);
+
+    print("size of permutations", permutations.size);
 
     const numValidArrangements = getNumValidArrangements(
       springs5,
@@ -151,6 +167,8 @@ const partTwo = (inputs: string[], solution?: number) => {
       unknownIndexes,
       permutations,
     );
+
+    print(numValidArrangements);
 
     sumValidArrangements += numValidArrangements;
   });
