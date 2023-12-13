@@ -11,6 +11,7 @@ const days: Record<string, string> = {
   "day-10": "./day-10-pipe-maze",
   "day-11": "./day-11-cosmic-expansion",
   "day-12": "./day-12-hot-springs",
+  "day-13": "./day-13-point-of-incidence",
 };
 
 async function main() {
