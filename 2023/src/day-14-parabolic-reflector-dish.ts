@@ -141,7 +141,7 @@ const partTwo = (inputs: string[], solution?: number) => {
    *
    *    total load = (# of cycles - 3) % 7
    *
-   *  Theoretically, it might be possible to solve this programatically by finding the start
+   *  Theoretically, it might be possible to solve this programmatically by finding the start
    *  of the loop (e.g. 80) and figuring out how long the period is. But without more test inputs,
    *  it doesn't seem worth it. :P
    */
