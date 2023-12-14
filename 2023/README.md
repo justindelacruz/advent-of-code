@@ -39,3 +39,13 @@ I needed to remind myself of the even-odd test, which I totally forgot about:
 
 https://iq.opengenus.org/inside-outside-test/:
 > The algorithm follows a basic observation that if a ray coming from infinity crosses through border of polygon, then it goes from outside to inside and outside to inside alternately. For every two crossings, point lies outside of polygon.
+ 
+### Day 12
+ 
+The first stumper.
+
+### Day 14
+
+I have no idea how I would have solved this entirely in code. However, I wanted to see if I could spot any patterns that would make this problem easier to solve.
+So, I plotted the "total loads after each cycle" into a line chart. Like magic, I saw a
+pattern right away!

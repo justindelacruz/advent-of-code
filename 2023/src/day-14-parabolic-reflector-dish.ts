@@ -92,7 +92,7 @@ const partTwo = (inputs: string[], solution?: number) => {
 
   const loads: number[] = [];
 
-  let cycles = 125;
+  let cycles = 125; // needs to be long enough to complete a full cycle
   while (cycles > 0) {
     rotate90(rocks);
 
@@ -115,16 +115,16 @@ const partTwo = (inputs: string[], solution?: number) => {
   }
 
   /**
-   * I have no idea how to code the actual solution _in code_. However...
+   * I have no idea how to code the actual solution _entirely in code_.
    *
    * Brute force: I could just run this code 1000000000 times, but it would have taken hours.
    *
    * I wanted to see if I could spot any patterns that would make this problem easier to solve.
-   * So, I inputted the "total loads after each cycle" into a line chart. Like magic, I saw a
+   * So, I plotted the "total loads after each cycle" into a line chart. Like magic, I saw a
    * pattern right away.
    *
    * After a brief period of erratic values, I noticed that the "total loads" followed
-   * a perfectly regular wave.
+   * a perfectly periodic wave.
    *
    * In particular:
    *    * The first 80 values showed unpredictable behavior
@@ -140,6 +140,10 @@ const partTwo = (inputs: string[], solution?: number) => {
    * the formula is more like this:
    *
    *    total load = (# of cycles - 3) % 7
+   *
+   *  Theoretically, it might be possible to solve this programatically by finding the start
+   *  of the loop (e.g. 80) and figuring out how long the period is. But without more test inputs,
+   *  it doesn't seem worth it. :P
    */
   const startOfLoop = 80;
   const mod = 17;
