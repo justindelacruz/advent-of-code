@@ -105,6 +105,7 @@ const partTwo = (inputsStr: string[], solution?: number) => {
       const [, focalLengthStr] = cleanBox[i].split("=");
       const focalLength = parseInt(focalLengthStr, 10);
       const focusingPower = (boxId + 1) * (i + 1) * focalLength;
+      // print('   ', boxId + 1, "*", i + 1, "*", focalLength, "=", focusingPower);
       totalFocusingPower += focusingPower;
     }
   });
@@ -139,5 +140,5 @@ export default function (): void {
   print("");
 
   print("Part 2 =========================================================");
-  partTwo(input);
+  partTwo(input, 243747);
 }
